@@ -1,0 +1,41 @@
+
+
+<%= form_for '/transfer' do %>
+
+<div class="row">
+  <div class="col-sm-3">
+    <strong>From user:</strong><br />
+    <select name="src_user_id">
+      <% @users.each do |user| %>
+        <option value="<%= user.id %>"><%= user.name %></option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="col-sm-1"><br />-&gt;</div>
+  
+  <div class="col-sm-3">
+    <strong>To user:</strong><br />
+    <select name="dst_user_id">
+      <% @users.each do |user| %>
+        <option value="<%= user.id %>"><%= user.name %></option>
+      <% end %>
+    </select>
+
+  </div>
+</div><!-- End Row -->
+<br />
+<div class="row">
+  <div class="col-sm-4">
+    <strong>Amount:</strong><br/>
+    <input name="amount" type="text" value="0.0" />
+  </div>
+
+  <div class="col-sm-3">
+    <br />
+    <button type="submit" class="btn btn-success">Make transfer</button>
+            
+  </div>
+</div>
+
+<% end %>

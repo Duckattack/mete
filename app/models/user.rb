@@ -20,4 +20,7 @@ class User < ActiveRecord::Base
     self.balance -= amount
     save!
   end
+
+
+
 end

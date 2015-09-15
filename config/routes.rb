@@ -8,11 +8,17 @@ Mete::Application.routes.draw do
     member do
       get 'deposit'
       get 'payment'
+
     end
     collection do
       get 'stats'
     end
   end
+
+  
+  resources :transfers, :only => [:index, :create]
+
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
