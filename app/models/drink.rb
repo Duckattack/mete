@@ -2,7 +2,8 @@ class Drink < ActiveRecord::Base
 
   validates_presence_of :name, :bottle_size, :price
 
-  has_many :drinks_audits
+  has_many :drinks_audits, 
+           :dependent => :destroy
 
   has_attached_file :logo,
                     :styles => { :thumb => "100x100#" }, 
