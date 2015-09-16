@@ -126,7 +126,11 @@ class UsersController < ApplicationController
   # Purchase a drink and debit the users account
   # 
   def purchase
-    @drink = Drink.find(params[:drink_id])
+
+    # Compatmode: accept drink_id as root param
+    drink_id = params[:drink_id]||params[:drink][:id]
+
+    @drink = Drink.find(drink_id)
     @user  = User.find(params[:id]) 
     
     # Debit user and add purchase to drinks audit
@@ -144,6 +148,8 @@ class UsersController < ApplicationController
         render :json => { :success => true, :new_balance => @user.balance.to_s }
       end
     end
+
+  end
 
   private
 

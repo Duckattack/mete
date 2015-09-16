@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+/*
+ * this was not in use in the first place.
+ *
+
 li.drink {
   background: rgba(255,255,255,0.3);
   display: inline-block;
@@ -17,3 +21,21 @@ li.drink {
     margin: 10px;
   }
 }
+*/
+
+.container-drink {
+  position: relative;
+
+  button.purchase {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+
+    opacity: 0;
+  
+  }
+
+}
+
+
