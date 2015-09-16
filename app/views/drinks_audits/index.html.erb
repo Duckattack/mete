@@ -1,0 +1,95 @@
+
+<form method="get">
+  <div class="control-group">
+    <label for="start_date" class="control-label">Show audits from</label>
+    <div class="controls">
+      <%= select_date @start_date, :prefix => :start_date %>
+    </div><!-- End Controls -->
+  </div><!-- End Group -->
+  <div class="control-group">
+    <label for="start_date" class="control-label">until</label>
+    <div class="controls">
+      <%= select_date @end_date, :prefix => :end_date %>
+    </div><!-- End Controls -->
+  </div><!-- End Group -->
+  <div class="control-group">
+    <div class="controls">
+      <br />
+      <button class="btn btn-primary" type="submit">Filter</button>
+      <a href="/drinks_audits">Remove filter</a>
+    </div><!-- End Controls -->
+  </div><!-- End Group -->
+</form>
+
+<hr />
+
+<p>
+  <strong>Sum of all payments made:</strong>
+  <%=m @payments_sum %>
+</p>
+<p>
+  <strong>Sum of all transactions:</strong>
+  <%= @sum %>
+</p>
+
+<hr />
+
+<% if @audits.count == 0 %>
+  <h4>No audits for this time range</h4>
+<% end %>
+
+
+<% current_date = nil %>
+<% sum_drinks = 0 %>
+<% sum_total  = BigDecimal.new(0) %>
+<% @grouped_audits.each do |audit| %>
+
+  <% display_date = audit.created_at.strftime('%Y-%m-%d') %>
+
+  <% if current_date != nil && current_date != display_date %>
+   </table> 
+
+  <div class="row">
+    <div class="col-sm-3 col-sm-offset-9" style="text-align:right;">
+      <hr />
+      <strong>Drinks:</strong> <%= sum_drinks %>, 
+      <strong>Total:</strong> <%= m sum_total %>
+    </div>
+  </div>
+
+  <% end %>
+
+  <% if current_date != display_date %> 
+    <% sum_drinks = 0 %>
+    <% sum_total  = BigDecimal.new(0) %>
+    <h3><%= display_date %> </h3>
+    <table class="table table-striped table-bordered table-condensed">
+      <tr>
+        <th>Drink</th><th>Count</th><th>Total</th>
+      </tr>
+  <% end %>
+    <% sum_drinks += audit.count %>
+    <% sum_total  += audit.total %>
+
+    <tr>
+      <td><%= audit.drink.name %></td>
+      <td><%= audit.count %></td>
+      <td><%= m audit.total %></td>
+    </tr>
+
+  <% current_date = display_date %>
+<% end %>
+
+<% if current_date != nil %>
+  </table>
+
+  <div class="row">
+    <div class="col-sm-3 col-sm-offset-9" style="text-align:right;">
+      <hr />
+      <strong>Drinks:</strong> <%= sum_drinks %>, 
+      <strong>Total:</strong> <%= m sum_total %>
+    </div>
+  </div>
+
+<% end %>
+

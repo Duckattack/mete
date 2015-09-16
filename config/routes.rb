@@ -2,6 +2,7 @@ Mete::Application.routes.draw do
   resources :drinks
 
   get 'audits' => 'audits#index'
+  get 'drinks_audits' => 'drinks_audits#index'
 
   resources :users do
     member do
