@@ -1,13 +1,14 @@
 Mete::Application.routes.draw do
   resources :drinks
 
-
   get 'audits' => 'audits#index'
 
   resources :users do
     member do
       get 'deposit'
       get 'payment'
+
+      post 'purchase'
 
     end
     collection do

@@ -84,31 +84,6 @@ class DrinksController < ApplicationController
   end
 
 
-  #
-  # POST /drinks/:id/purchase
-  # Purchase a drink and debit the users account
-  # 
-  def purchase
-    @drink = Drink.find(params[:id])
-    @user  = User.find(params[:user_id]) 
-    
-    # Debit user and add purchase to drinks audit
-    @user.purchase!(@drink)
-
-    respond_to do |format|
-      format.html do
-        flash[:success] = "You just bought a drink and your new balance is #{@user.balance}. Thank you."
-        if (@user.balance < 0) then
-          flash[:warning] = "Your balance is below zero. Remember to compensate as soon as possible."
-        end
-        redirect_to @user 
-      end
-      format.json do
-        render :json => { :success => true, :new_balance => @user.balance.to_s }
-      end
-    end
-
-  end
 
   private
 
