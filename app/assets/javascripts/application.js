@@ -14,7 +14,10 @@
 //= require jquery_ujs
 //= require_tree .
 //= require bootstrap
-
+//
+//= require highcharts
+//= require highcharts/themes/dark-blue
+//
 // Replace link targets with JavaScript handlers to prevent iOS fullscreen web
 // app from opening links in extra browser app
 if (navigator.userAgent.match(/(ipod|iphone|ipad)/i)) {

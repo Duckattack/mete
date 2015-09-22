@@ -23,14 +23,25 @@
 
 <hr />
 
-<p>
-  <strong>Sum of all payments made:</strong>
-  <%=m @payments_sum %>
-</p>
-<p>
-  <strong>Sum of all transactions:</strong>
-  <%= @sum %>
-</p>
+  <p>
+    <strong>Sum of all payments made:</strong>
+    <%=m @payments_sum %>
+  </p>
+  <p>
+    <strong>Sum of all transactions:</strong>
+    <%= @sum %>
+  </p>
+
+<hr />
+
+<div class="row">
+ <div class="col-sm-6">
+  <div class="chart-total"></div>
+ </div>
+ <div class="col-sm-6">
+  <div class="chart-drinks-times"></div>
+ </div>
+</div><!-- End Row -->
 
 <hr />
 
