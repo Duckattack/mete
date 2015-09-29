@@ -145,7 +145,7 @@ class UsersController < ApplicationController
         redirect_to @user 
       end
       format.json do
-        render :json => { :success => true, :new_balance => @user.balance.to_s }
+        render :json => @user 
       end
     end
 
