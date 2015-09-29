@@ -121,6 +121,36 @@ class UsersController < ApplicationController
     end
   end
 
+  #
+  # POST /user/:id/purchase
+  # Purchase a drink and debit the users account
+  # 
+  def purchase
+
+    # Compatmode: accept drink_id as root param
+    drink_id = params[:drink_id]||params[:drink][:id]
+
+    @drink = Drink.find(drink_id)
+    @user  = User.find(params[:id]) 
+    
+    # Debit user and add purchase to drinks audit
+    @user.purchase!(@drink)
+
+    respond_to do |format|
+      format.html do
+        flash[:success] = "You just bought a drink and your new balance is #{@user.balance}. Thank you."
+        if (@user.balance < 0) then
+          flash[:warning] = "Your balance is below zero. Remember to compensate as soon as possible."
+        end
+        redirect_to @user 
+      end
+      format.json do
+        render :json => @user 
+      end
+    end
+
+  end
+
   private
 
   def user_params

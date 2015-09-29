@@ -22,5 +22,16 @@ class User < ActiveRecord::Base
   end
 
 
+  def purchase(drink)
+    self.balance -= drink.price 
+    audit = DrinksAudit.new :drink => drink
+    audit.save
+  end
+
+  def purchase!(drink)
+    self.purchase(drink)
+    self.save!
+  end
+
 
 end

@@ -1,13 +1,26 @@
 Mete::Application.routes.draw do
   resources :drinks
 
-
   get 'audits' => 'audits#index'
+  get 'drinks_audits' => 'drinks_audits#index'
+
+  
+  #
+  # Statistics
+  #
+  resources :stats, :only => [ :index ] do
+    collection do
+      get 'drinks_total'
+      get 'drinks_times'
+    end
+  end
 
   resources :users do
     member do
       get 'deposit'
       get 'payment'
+
+      post 'purchase'
 
     end
     collection do
@@ -18,7 +31,7 @@ Mete::Application.routes.draw do
   
   resources :transfers, :only => [:index, :create]
 
-  
+ 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

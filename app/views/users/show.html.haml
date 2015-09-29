@@ -27,7 +27,10 @@
 %hr
 
 .row
-  = render @drinks, :locals => {:user => @user}
+  - @drinks.each do |drink|
+    = form_for :drink, :url => purchase_user_path(:id => @user.id) do |f|
+      = f.hidden_field :id, :value => drink.id
+      = render 'drinks/drink', :drink => drink
 
 .row
   = render partial: 'bills'

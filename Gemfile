@@ -29,8 +29,11 @@ gem 'mini_magick', :github => 'minimagick/minimagick'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
+gem 'highcharts-rails', '~> 4.1.0'
+
+
 # To use Jbuilder templates for JSON
-# gem 'jbuilder'
+gem 'jbuilder'
 
 # To use debugger
 # gem 'debugger'
