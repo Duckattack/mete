@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131030201041) do
+ActiveRecord::Schema.define(version: 20150915215146) do
 
   create_table "audits", force: true do |t|
     t.datetime "created_at"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 20131030201041) do
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
   end
+
+  create_table "drinks_audits", force: true do |t|
+    t.integer  "drink_id"
+    t.decimal  "price",      precision: 20, scale: 2, default: 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "drinks_audits", ["drink_id"], name: "index_drinks_audits_on_drink_id"
 
   create_table "users", force: true do |t|
     t.string   "name"
