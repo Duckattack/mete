@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @users }
+      format.json 
     end
   end
 
@@ -154,7 +154,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :balance)
+    params.require(:user).permit(:name, :email, :balance, :avatar)
   end
 
   def redirect(user = users_url)
