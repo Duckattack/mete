@@ -7,9 +7,9 @@
 
 class TransfersController < ApplicationController
   before_filter :load_users
-  
 
-  def index 
+
+  def index
   end
 
   #
@@ -23,14 +23,18 @@ class TransfersController < ApplicationController
 
     @amount = BigDecimal.new(params[:amount])
 
-    # Make deposit from src user
+    # Take from src user
     @srcUser.payment(@amount)
+
+    # Reload dst user in case src == dst user to refreh
+    # the balance
+    @dstUser.reload()
 
     # Add amount to dst user
     @dstUser.deposit(@amount)
 
     respond_to do |format|
-      format.html do 
+      format.html do
         flash[:success] = "Transfer from #{@srcUser.name} to #{@dstUser.name} successful."
         redirect_to '/transfers'
       end
