@@ -2,7 +2,7 @@
 class DrinksAudit < ActiveRecord::Base
   default_scope ->{ order('drinks_audits.created_at DESC').order(:drink_id) }
   belongs_to :drink
-  
+
   #
   # Override setter to assign drink id and price
   #

@@ -7,9 +7,8 @@
 
 class TransfersController < ApplicationController
   before_filter :load_users
-  
 
-  def index 
+  def index
   end
 
   #
@@ -30,7 +29,7 @@ class TransfersController < ApplicationController
     @dstUser.deposit(@amount)
 
     respond_to do |format|
-      format.html do 
+      format.html do
         flash[:success] = "Transfer from #{@srcUser.name} to #{@dstUser.name} successful."
         redirect_to '/transfers'
       end
